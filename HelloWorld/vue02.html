@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>vue02</title>
+</head>
+<body>
+   <div id="app">
+       <h2>双括号表达式</h2>
+          <p>{{msg}}</p>
+          <p>{{msg.toUpperCase()}}</p>
+          <!--<p>{{{msg}}}</p>-->
+          <p v-text="msg"></p>
+          <p v-html="msg"></p>
+       <h2>指令一：强制数据绑定</h2>
+         <img v-bind:src="imgUrl">
+       <h2>指令二：绑定事件监听</h2>
+          <button v-on:click="test">test</button><br>
+          <button v-on:click="test2('abc')">test</button>
+   </div>
+</body>
+<script src="../js/vue.min.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el: '#app',
+        data:{
+            msg: '<a href="http://www.baidu.com">I will back</a>',
+            imgUrl: 'https://cn.vuejs.org/images/logo.png'
+        },
+        methods:{
+            test(){
+                alert('haha');
+            },
+            test2(content){
+                alert(content);
+            },
+        }
+    });
+</script>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>事件绑定</title>
+</head>
+<body>
+  <div id="app">
+      <p v-show="isShow">my Vue test</p><br>
+      <button @click="destoryVm">destory VM</button>
+  </div>
+</body>
+<!--mount  初始化
+只要是回调函数 就写成箭头函数
+Observe Data 观察数据 数据绑定就是给属性添加一个set方法 监视属性值  的变化
+-->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            isShow: true
+        },
+        beforeCreate(){
+          console.log('beforeCreate()')
+        },
+        created(){
+          console.log('created()')
+        },
+        beforeMount(){
+            console.log('beforeMount')
+        },
+        mounted(){//初始化显示之后立即调用(1次)
+            this.intervalId = setInterval(()=>{
+                console.log("-----")
+                this.isShow = !this.isShow
+            },1000)
+        },
+        beforeUpdate(){
+            console.log('beforeUpdate()')
+        },
+        updated(){
+            console.log('updated()')
+        },
+        beforeDestroy(){//死亡之前(1次)
+          clearInterval(this.intervalId)
+            console.log(this.isShow)
+        },
+        destroyed(){//死亡之前(1次)
+            console.log('destroyed')
+        },
+        methods:{
+            destoryVm(){
+                //干掉vm
+                this.$destroy()
+            }
+        }
+    });
+
+</script>
+</html>

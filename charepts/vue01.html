@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>内置指令</title>
+   <!-- <style>
+        [v-clock]{
+            display: none;
+        }
+    </style>-->
+</head>
+<body>
+  <div id="app">
+      <p v-upper-text="msg"></p>
+      <p v-lower-text="msg"></p>
+  </div>
+  <div id="app2">
+      <p v-upper-text="msg"></p>
+      <p v-lower-text="msg"></p>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    //自定义指令  el就是指令所在的标签  binding是包含指令相关信息数据的对象
+    Vue.directive('upper-text',function(el,binding){
+        console.log(el,binding)
+        el.textContent = binding.value.toUpperCase();
+    })
+    new Vue({
+        el: '#app',
+        data: {
+            msg: 'NBA  l like this play',
+        },
+        directives:{//只在当前vm中有效
+            'lower-text': function(el,binding){
+                console.log(el,binding)
+                el.textContent = binding.value.toLowerCase();
+            }
+        }
+    })
+    new Vue({
+        el: '#app2',
+        data: {
+            msg: "no is process",
+        }
+    })
+</script>
+</html>

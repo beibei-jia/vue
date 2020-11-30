@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>class和style属性</title>
+    <style>
+        .aClass{
+            color: red;
+        }
+        .bClass{
+            color: blue;
+        }
+        .cClass{
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+  <div id="app">
+      <h1>1.class绑定::class='XXX'</h1>
+      <p class="cClass" :class="a">xxx是个字符串</p>
+      <p :class="{aClass:isA,bClass:isB}">xxx是个对象</p>
+      <p :class="objectV">xxx是个对象</p>
+      <p style="font-size: 30px">style......</p>
+      <p :style="{color: activeColor,fontSize: fontSize + 'px'}">xxx是个对象</p>
+      <button @click="update">更新</button>
+      <!--<h2>v-for遍历对象</h2>
+      <ul>
+          <li v-for="item in persons[1]">
+              ==={{item}}&#45;&#45;{{item}}===
+          </li>
+      </ul>-->
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            msg: "hahale",
+            a: 'aClass',
+            isA: true,
+            isB: false,
+            objectV:['bClass','cClass'],
+            activeColor: 'blue',
+            fontSize: 20
+        },
+        methods:{
+            update(){
+                this.a = "bClass"
+                this.isA = false
+                this.isB = true
+                this.activeColor = 'green'
+                this.fontSize = 46
+            }
+        }
+    });
+</script>
+</html>

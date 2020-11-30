@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件绑定</title>
+    <style>/*  []属性选择器 指令属性在解析之前存在 解析之后不再了   */
+        [v-cloak]{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+  <div id="app">
+    <p ref="content">atguigu.com</p>
+    <p ref="content2">atguigu.comoooo</p>
+    <button @click="hint">hint</button>
+    <p v-cloak>{{msg}}</p>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    alert('----')
+    const vm = new Vue({
+        el: "#app",
+        data: {
+           msg:'hhh'
+        },
+        methods:{
+           hint(){
+               var mg = this.$refs.content.innerHTML
+               var mh = this.$refs.content2.innerHTML
+               alert(mg + mh)
+           }
+        }
+    });
+</script>
+</html>

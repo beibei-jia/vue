@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>事件绑定</title>
+</head>
+<body>
+  <div id="app">
+   <h2>绑定监听</h2>
+      <button @click="test">test</button>
+      <button @click="test2('test2')">test2</button>
+      <button @click="test3">test3</button>
+      <button @click="test4(123,$event)">test4</button>
+      <h2>事件修饰符</h2>
+      <div style="width: 200px; height: 200px; background: red;"@click="test5">
+          <div style="width: 100px; height: 100px; background: green;"@click.stop="test6">
+
+          </div>
+      </div>
+      <!--//阻止事件的默认行为-->
+      <a href="https://www.baidu.com" @click.prevent="test7">stop</a>
+      <h2>按键修饰符</h2>
+      <input type="text" @keyup="test8">
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    const vm = new Vue({
+        el: "#app",
+        data: {
+           test(){
+               alert("test")
+           },
+            test2(msg){
+               alert(msg)
+            },
+            test3(event){
+                alert(event.target.innerHTML)
+            },
+            test4(num,event){
+               alert(num + '---' + event.target.innerHTML)
+            },
+            test5(){//冒泡 停止
+                alert("out")
+            },
+            test6(event){
+                //event.stopPropagation()
+                alert("inner")
+            },
+            test7(event){
+               //event.preventDefault()
+               alert("stop")
+            },
+            //点击回车键
+            test8(event){
+               if(event.keyCode === 13)
+               alert(event.target.value)
+            }
+        }
+    });
+</script>
+</html>

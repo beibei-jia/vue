@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据的绑定与computed</title>
+</head>
+<body>
+ <div id="app">
+     <p>{{msg}}</p>
+     姓<input type="text" placeholder="First Name" v-model="fname"><br>
+     名<input type="text" placeholder="Last Name" v-model="lname"><br>
+     姓名：(单向)<input type="text" placeholder="Name1" v-model="fname1"><br>
+     姓名2：(单向)<input type="text" placeholder="Name2" v-model="fname2"><br>
+     姓名3：(双向)<input type="text" placeholder="Name3" v-model="fullname3">
+     <p> </p>
+ </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+ <script type="text/javascript">
+    const vm = new Vue({
+        el: "#app",
+        data: {
+            msg: 'haha',
+            fname: 'A',
+            lname: 'B',
+            fname2: 'A B',
+        },
+        computed:{
+            fname1(){
+                //alert("fname1()");
+                return this.fname + " " +this.lname;
+            },
+            fullname3: {
+                //回调函数   你定义的  没有调用 最终还是执行了
+                //什么时候执行  用来做什么
+               //回调函数   当需要读取当前属性值时回调，根据相关并返回当前属性的值
+                get(){
+                    return this.fname + " " + this.lname
+                },
+                //回调函数，监视当属性发生改变时回调，根性相关属性数据
+                set(value){
+                    console.log(names);
+                    const names = value.split(" ")
+                    this.fname = names[0]
+                    this.lname = names[1]
+                }
+            }
+        },
+        watch:{//配置监视
+            fname: function (value) {
+                //console.log(this)
+                this.fname2 = value + " " + this.lname
+            }
+        }
+    })
+    vm.$watch('lname',function (value) {
+        //更新值 fname2
+        this.fname2 = this.fname + " " + value
+    })
+ </script>
+</html>

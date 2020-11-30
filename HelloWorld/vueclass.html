@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>class和style</title>
+    <style>
+        .aClass{
+            font-size: 30px;
+        }
+        .bClass{
+            color: green;
+        }
+        .cClass{
+            color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+   <div id="app">
+       <p class="cClass" :class="a">Jack is a Boss</p>
+       <!--<p :class="b">Lucy is learning docker</p>-->
+       <p style="fontSize:50px" class="cClass">I am learning vue!!!</p>
+       <p :class="objectV">xxx是个对象</p>
+       <p :style="{color: activeColor,fontSize: fontSize + 'px'}">style is testing !!!!!!</p>
+   </div>
+</body>
+ <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+ <script type="text/javascript">
+     const vm = new Vue({
+         el: "#app",
+         data: {
+             msg: 'vue',
+             a: "aClass",
+             //b: "bClass",
+             //c: "cClass"
+             objectV: ['aClass','bClass'],
+             activeColor: "green",
+             fontSize: 33
+         }
+     })
+ </script>
+</html>

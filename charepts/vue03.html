@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>内置指令</title>
+    <style>
+        [v-clock]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+  <div id="app">
+      <p v-cloak>{{msg}}</p>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js">
+    new Vue({
+        el: '#app',
+        data: {
+            msg: thisdata,
+        }
+    })
+</script>
+</html>

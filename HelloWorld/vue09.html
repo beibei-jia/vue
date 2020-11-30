@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过渡和动画</title>
+    <style>
+        /*显示和隐藏的过渡效果*/
+        .xxx-enter-active, .xxx-leave-active{
+            transition: opacity  2s;
+        }
+        /*隐藏时的样式*/
+        .xxx-enter, .xxx-leave-to{
+            opacity: 0;
+        }
+        /*显示的过滤效果*/
+        .move-enter-active{
+            transition: all 1s;
+        }
+        /*隐藏的过滤效果*/
+        .move-leave-active{
+            transition: all 3s;
+        }
+        /*隐藏时的样式*/
+        .move-enter, .move-leave-to{
+            opacity: 0;
+            transform: translateX(20px);
+        }
+    </style>
+</head>
+<body>
+  <div id="app">
+     <button @click="isShow=!isShow">toggle</button>
+      <transition name="xxx">
+         <p v-show="isShow">hello World!</p>
+      </transition>
+  </div>
+  <div id="app2">
+      <button @click="isShow=!isShow">toggle</button><br>
+      <transition name="move">
+          <p v-show="isShow" style="background: blueviolet;display: inline-block">hello World!</p>
+      </transition>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el: "#app",
+        data: {
+            isShow: true
+        }
+    });
+    new Vue({
+        el: "#app2",
+        data: {
+            isShow: true
+        }
+    });
+</script>
+</html>
